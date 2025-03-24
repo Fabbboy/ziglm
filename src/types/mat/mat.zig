@@ -119,6 +119,20 @@ fn ArithmeticMatMixin(comptime Self: type, comptime Real: type) type {
                 }
                 return true;
             }
+
+            pub fn mul(a: Self, b: Self) Self {
+                var res: Self = undefined;
+                inline for (0..Self.col_count) |cidx| {
+                    inline for (0..Self.row_count) |ridx| {
+                        var sum = a.cols[0].getAt(ridx) * b.cols[cidx].x;
+                        inline for (1..Self.col_count) |idx| {
+                            sum += a.cols[idx].getAt(ridx) * b.cols[cidx].getAt(idx);
+                        }
+                        res.cols[cidx].setAt(ridx, sum);
+                    }
+                }
+                return res;
+            }
         }
     else
         struct {};
