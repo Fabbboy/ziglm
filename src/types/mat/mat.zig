@@ -133,6 +133,22 @@ fn ArithmeticMatMixin(comptime Self: type, comptime Real: type) type {
                 }
                 return res;
             }
+
+            pub fn ortho(left: Real, right: Real, bottom: Real, top: Real, near: Real, far: Real) Self {
+                const zero = comptime zeroForArithmeticType(Real);
+                const one = comptime oneForArithmeticType(Real);
+                const two = one + one;
+
+                const rl = right - left;
+                const tb = top - bottom;
+                const fn_ = far - near;
+
+                const tx = -(right + left) / rl;
+                const ty = -(top + bottom) / tb;
+                const tz = -(far + near) / fn_;
+
+                return Self.new(two / rl, zero, zero, zero, zero, two / tb, zero, zero, zero, zero, -two / fn_, zero, tx, ty, tz, one);
+            }
         }
     else
         struct {};
