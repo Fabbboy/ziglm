@@ -1,37 +1,37 @@
 pub fn isSignedIntegral(comptime Type: type) bool {
-    return @typeInfo(Type) == .Int and @typeInfo(Type).Int.signedness == .signed;
+    return @typeInfo(Type) == .int and @typeInfo(Type).int.signedness == .signed;
 }
 
 pub fn requireSignedIntegral(comptime Type: type) void {
     if (!isSignedIntegral(Type))
-        @compileError("Invalid std.builtin.Type - should be std.builtin.Type.Int and .signedness == .signed");
+        @compileError("Invalid std.builtin.Type - should be std.builtin.Type.int and .signedness == .signed");
 }
 
 pub fn isUnsignedIntegral(comptime Type: type) bool {
-    return @typeInfo(Type) == .Int and @typeInfo(Type).Int.signedness == .unsigned;
+    return @typeInfo(Type) == .int and @typeInfo(Type).int.signedness == .unsigned;
 }
 
 pub fn requireUnsignedIntegral(comptime Type: type) void {
     if (!isUnsignedIntegral(Type))
-        @compileError("Invalid std.builtin.Type - should be std.builtin.Type.Int and .signedness == .unsigned");
+        @compileError("Invalid std.builtin.Type - should be std.builtin.Type.int and .signedness == .unsigned");
 }
 
 pub fn isFloatingPoint(comptime Type: type) bool {
-    return @typeInfo(Type) == .Float;
+    return @typeInfo(Type) == .float;
 }
 
 pub fn requireFloatingPoint(comptime Type: type) void {
     if (!isFloatingPoint(Type))
-        @compileError("Invalid std.builtin.Type - should be std.builtin.Type.Float");
+        @compileError("Invalid std.builtin.Type - should be std.builtin.Type.float");
 }
 
 pub fn isFloatingPoint32(comptime Type: type) bool {
-    return @typeInfo(Type) == .Float and @typeInfo(Type).Float.bits == 32;
+    return @typeInfo(Type) == .float and @typeInfo(Type).float.bits == 32;
 }
 
 pub fn requireFloatingPoint32(comptime Type: type) void {
     if (!isFloatingPoint32(Type))
-        @compileError("Invalid std.builtin.Type - should be std.builtin.Type.Float and .bits == 32 (f32)");
+        @compileError("Invalid std.builtin.Type - should be std.builtin.Type.float and .bits == 32 (f32)");
 }
 
 pub fn isSignedNumeric(comptime Type: type) bool {
@@ -40,7 +40,7 @@ pub fn isSignedNumeric(comptime Type: type) bool {
 
 pub fn requireSignedNumeric(comptime Type: type) void {
     if (!isSignedNumeric(Type))
-        @compileError("Invalid std.builtin.Type - should be std.builtin.Type.Int or std.builtin.Type.Float");
+        @compileError("Invalid std.builtin.Type - should be std.builtin.Type.int or std.builtin.Type.float");
 }
 
 pub fn isNumeric(comptime Type: type) bool {
@@ -49,16 +49,16 @@ pub fn isNumeric(comptime Type: type) bool {
 
 pub fn requireNumeric(comptime Type: type) void {
     if (!isNumeric(Type))
-        @compileError("Invalid std.builtin.Type - should be std.builtin.Type.Int or std.builtin.Type.Float");
+        @compileError("Invalid std.builtin.Type - should be std.builtin.Type.int or std.builtin.Type.float");
 }
 
 pub fn isBoolean(comptime Type: type) bool {
-    return @typeInfo(Type) == .Bool;
+    return @typeInfo(Type) == .bool;
 }
 
 pub fn requireBoolean(comptime Type: type) void {
     if (!isBoolean(Type))
-        @compileError("Invalid std.builtin.Type - should be std.builtin.Type.Bool");
+        @compileError("Invalid std.builtin.Type - should be std.builtin.Type.bool");
 }
 
 pub fn isArithmetic(comptime Type: type) bool {
@@ -67,5 +67,5 @@ pub fn isArithmetic(comptime Type: type) bool {
 
 pub fn requireArithmetic(comptime Type: type) void {
     if (!isArithmetic(Type))
-        @compileError("Invalid std.builtin.Type - should be std.builtin.Type.Int, std.builtin.Type.Float, or std.builtin.Type.Bool");
+        @compileError("Invalid std.builtin.Type - should be std.builtin.Type.int, std.builtin.Type.float, or std.builtin.Type.bool");
 }
