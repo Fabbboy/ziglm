@@ -134,6 +134,17 @@ fn ArithmeticMatMixin(comptime Self: type, comptime Real: type) type {
                 return res;
             }
 
+            pub fn transpose(self: Self) Mat(Self.row_count, Self.col_count, Real) {
+                var res: Mat(Self.row_count, Self.col_count, Real) = undefined;
+                inline for (0..Self.col_count) |c| {
+                    inline for (0..Self.row_count) |r| {
+                        const value = self.cols[c].getAt(r);
+                        res.cols[r].setAt(c, value);
+                    }
+                }
+                return res;
+            }
+
             pub fn ortho(left: Real, right: Real, bottom: Real, top: Real, near: Real, far: Real) Self {
                 const zero = comptime zeroForArithmeticType(Real);
                 const one = comptime oneForArithmeticType(Real);
